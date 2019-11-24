@@ -1,0 +1,43 @@
+{% block content %}
+
+    {% for collection in collections %}
+        {% if collection.sub_category_id is empty %}
+            <div class="collection-background">
+                <div class="main-collection-container">
+                    <h2><a href="/collection/show/{{ collection.id }}"
+                           class="collection-title-link">{{ collection.name }}</a>
+                    </h2>
+                    <hr class="collection-delimiter">
+                    <div class="d-flex collection-container">
+                        <div class='main-picture shadow'>
+                            <a href="/collection/show/{{ collection.id }}"><img class="main-picture"
+                                                                                src="/assets/images/test_pictures/{{ collection.id }}.png"/></a>
+                        </div>
+                        <div>
+                            <div class='several-pictures'>
+                                {% for product in randomProducts[collection.id] %}
+                                    <div class="card card-picture" style="width: 13rem;">
+                                        <span class='tag'><span class='text'>{{ product.name }}</span></span>
+                                        <div class="imgHome">
+                                            <img src="{{ product.image }}"
+                                                 class="card-img-top img-collection" alt="...">
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title" style="font-size:16px;">{{ product.price }} $</h5>
+                                            <a href="/product/show/{{ product.id }}" class="btn btn-primary btn-block">View
+                                                product</a>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+
+    {{ topCollection.id.name }}
+    </div>
+{% endblock %}
+

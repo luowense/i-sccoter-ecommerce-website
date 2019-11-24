@@ -1,0 +1,76 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    {% include 'Collection/_collection-main-banner.html.twig' %}
+    {% include 'Collection/_submenu-collection.html.twig' %}
+    <div class="container product ">
+        <div class="row mx-auto">
+            <div class="col-5">
+                <div>
+                    <img class="product-picture img-fluid" src="{{ product.image }}" alt="...">
+                </div>
+                <div class="share-product">
+                    <p>Share to:</p>
+                    <div class="share-sm"><a href="https://www.facebook.com"><img
+                                    src="/assets/images/layout_pictures/social-media-icons/001-facebook.png"
+                                    alt="Facebook"/></a></div>
+                    <div class="share-sm"><a href="https://twitter.com"><img
+                                    src="/assets/images/layout_pictures/social-media-icons/002-twitter.png"
+                                    alt="Twitter"/></a></div>
+                    <div class="share-sm"><a href="https://www.youtube.com"><img
+                                    src="/assets/images/layout_pictures/social-media-icons/003-instagram.png"
+                                    alt="Instagram"/></a></div>
+                    <div class="share-sm"><a href="https://www.instagram.com"><img
+                                    src="/assets/images/layout_pictures/social-media-icons/004-google-plus.png"
+                                    alt="Google Plus"/></a></div>
+
+                </div>
+            </div>
+            <div class="col-5 offset-1 product-title">
+                <p><strong>{{ product.name }}</strong></p>
+                <p><strong>$ {{ product.price }}</strong></p>
+                <p class="product-description">{{ product.description }}</p>
+                <form action="/Product/addToCart/" method="post">
+                    <input type="hidden" name="hiddenReference" value="{{ product.reference_id }}">
+                    <input type="number" class="qty" value="1" name="qty" max="10" min="1" step="1">
+                    <button type="submit" class="btn btn-success mobile-cart-button" name="add">Add To Cart</button>
+                </form>
+                <div class="badge-section">
+                    <img class="product-badge" src="/assets/images/test_pictures/mcafee_secure@.png"/>
+                    <img class="product-badge" src="/assets/images/test_pictures/money_back2@.png"/>
+                    <img class="product-badge" src="/assets/images/test_pictures/paypal@.png"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+               aria-selected="true">Product Description</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+               aria-selected="false">Customer Ratings</a>
+        </li>
+    </ul>
+    <div class="product-tab">
+        <div class="tab-content ">
+            <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <div class="description-section">
+                    <h2 class="title-product">{{ product.name }}</h2>
+                    <p>{{ product.description }}</p>
+                </div>
+            </div>
+            <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                {% include 'Product/_user-rating.html.twig' %}
+            </div>
+        </div>
+    </div>
+    <script>
+        $(function () {
+            $('#myTab li:last-child a').tab('show')
+        })
+    </script>
+
+
+{% endblock %}

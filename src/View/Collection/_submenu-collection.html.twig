@@ -1,0 +1,13 @@
+<nav aria-label="breadcrumb">
+    {% if locationArr != null %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/home/index">Home</a></li>
+        {% if locationArr[2][0] == null %}
+        <li class="breadcrumb-item" aria-current="page"><a href="/collection/show/{{ locationArr[2] }}">{{ locationArr[0] }}</a></li>
+        {% else %}
+        <li class="breadcrumb-item" aria-current="page"><a href="/collection/show/{{ locationArr[2][0] }}">{{ locationArr[0] }}</a></li>
+        {% endif %}
+        <li class="breadcrumb-item" aria-current="page"><a href="/subcollection/show/{{ locationArr[2][1] }}"> {{ locationArr[1] }}</a></li>
+    </ol>
+    {% endif %}
+</nav>

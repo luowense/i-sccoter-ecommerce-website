@@ -1,0 +1,86 @@
+<div class="product-tab">
+    <div class="tab-content ">
+        <div class="tab-pane" id="comment" role="tabpanel" aria-labelledby="comment-tab">
+            {% include 'User/_user-information-listing.html.twig' %}
+            {% if comment == null %}
+            {% else %}
+            <div class="order-section">
+
+                <form>
+                    <div class="form-group">
+
+                        <p><strong>{{ comment }}</strong></p>
+                    </div>
+                </form>
+            </div>
+            {% endif  %}
+        </div>
+        <div class="tab-pane active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            {% include 'User/_user-information-listing.html.twig' %}
+            {% if distance == 'undefined' %}
+            {% else %}
+                <div class="alert alert-primary alert-distance" role="alert">
+                    Your home is exactly at <span>{{ distance }}</span> kms from our warehouse
+                </div>
+            {% endif %}
+            <form method="POST" class="form-user">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail4">Name</label>
+                        <input name="name" type="text" class="form-control" id="inputEmail4" placeholder="Name"
+                               value="{{ userName }}">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail4">FirstName</label>
+                        <input name="firstname" type="text" class="form-control" id="inputEmail4"
+                               placeholder="Firstname"
+                               value="{{ userFirstname }}">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail4">Email</label>
+                        <input type="email" class="form-control" id="inputEmail4" placeholder="Email"
+                               value="{{ userEmail }}">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputPassword4">Password</label>
+                        <input name="password" type="password" class="form-control" id="inputPassword4"
+                               placeholder="Password"
+                               value="{{ userPassword }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputAddress">Address</label>
+                    <input name="address1" type="text" class="form-control" id="inputAddress" placeholder="1234 Main St"
+                           value="{{ userAddress1 }}">
+                </div>
+                <div class="form-group">
+                    <label for="inputAddress2">Address 2</label>
+                    <input name="address2" type="text" class="form-control" id="inputAddress2"
+                           placeholder="Apartment, studio, or floor" value="{{ userAddress2 }}">
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputCity">City</label>
+                        <input name="city" id="city" type="text" class="form-control" value="{{ userCity }}">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="inputZip">Zip</label>
+                        <input name="zip" type="text" class="form-control" id="inputZip" value="{{ userZip }}">
+                    </div>
+                </div>
+                <button type="submit" id="submitWeather" class="btn btn-primary">Save</button>
+            </form>
+            <form method='post' enctype="multipart/form-data">
+                <label for="profile-picture" class="upload-label">Do you want to update your profile picture ?</label>
+                <input type="file" name="file" class="btn btn-primary"/><br><br>
+                <input type="submit" value="Upload" class="btn btn-primary upload-button"/>
+                <span>{{ uploadError }}</span>
+            </form>
+            <div id='map'></div>
+        </div>
+        <div class="tab-pane active" id="info" role="tabpanel" aria-labelledby="home-tab">
+
+        </div>
+
+    </div>
+</div>

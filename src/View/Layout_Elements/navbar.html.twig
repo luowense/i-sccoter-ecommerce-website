@@ -1,0 +1,92 @@
+{% block navbar %}
+    <nav class="navbar navbar-expand-md navbar-light bg-light navbar-homepage">
+        <div class="logo-website">
+            <a class="navbar-brand pb-1 offset-4" href="/Home/index"><img src="/assets/images/main-logo.png"></a>
+        </div>
+        <div class="menu-navigation desktop-navigation">
+            <button class="navbar-toggler hamb-menu" type="button" data-toggle="collapse"
+                    data-target="#navbarNavDropdown"
+                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link mr-5" href="/Home/index">Home <span class="sr-only">(current)</span></a>
+                    </li>
+
+                    {% for collection in globalCollections %}
+                        <li class="nav-item dropdown mr-3">
+                            <a class="nav-link dropdown-toggle"
+                               onclick="window.location ='/collection/show/{{ collection.category.id }}'"
+                               id="navbarDropdownMenuLink"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                               style="cursor: pointer">
+                                {{ collection.category.name }}
+                            </a>
+                            <ul class="dropdown-menu nav-dropdown" aria-labelledby="navbarDropdownMenuLink">
+                                {% for subCollection in collection.subcats %}
+                                    <li><a class="dropdown-item"
+                                           href="/Subcollection/show/{{ subCollection.id }}">{{ subCollection.name }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="d-flex">
+            {% if session.userEmail is null %}
+                <div class="btn-group">
+                        <a href="/login/index" class="btn btn-secondary">Login</a>
+                </div>
+            {% endif %}
+            {% if session.userEmail is defined %}
+
+                <div class="btn-group">
+                    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Logout
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/user/logout">Logout</a>
+                        <a class="dropdown-item" href="/user/index">Customer Section</a>
+                    </div>
+                </div>
+
+
+
+            {% endif %}
+        </div>
+            <div class="nav-article">
+                <a href="/Cart/index"><img id="cart" src="/assets/images/layout_pictures/cart.png" alt="cart"></a>
+                <a href="/Cart/index" class="nbArticles">{{ nbArticles }}</a>
+            </div>
+            <button class="navbar-toggler hamb-menu mobile-nav-button" type="button" data-toggle="collapse"
+                    data-target="#mobileNavbarDropdown"
+                    aria-controls="mobileNavbarDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="menu-navigation mobile-navigation">
+
+            <div class="collapse navbar-collapse justify-content-between" id="mobileNavbarDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link mr-5" href="/Home/index">Home <span class="sr-only">(current)</span></a>
+                    </li>
+
+                    {% for collection in globalCollections %}
+                        <li class="nav-item dropdown mr-3">
+                            <a class="nav-link"
+                               onclick="window.location ='/collection/show/{{ collection.category.id }}'"
+                               id="mobileNavbarDropdownMenuLink">
+                                {{ collection.category.name }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endblock %}

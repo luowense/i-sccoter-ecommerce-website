@@ -1,0 +1,19 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    {% include 'Collection/_collection-main-banner.html.twig' %}
+    {% include 'Collection/_submenu-collection.html.twig' %}
+    <div class="container collection-pictures">
+        <div class="row mx-auto">
+            {% for product in products %}
+                <div class="col-4 collection-title">
+                    <a href="/Product/show/{{ product.id }}"><img id="tv"
+                                                                  class="collection-illustration"
+                                                                  src="{{ product.image }}"/></a>
+                    <p class="productSubcollection">{{ product.name }}</p>
+                    <p>{{ product.price }} $</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

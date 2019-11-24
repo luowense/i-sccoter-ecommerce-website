@@ -1,0 +1,33 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    {% include 'User/_weather.html.twig' %}
+    <div class="container user-section">
+        <div class="row">
+            <div class="col-12 user-section">
+                <div class="user-menu">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                               aria-controls="profile"
+                               aria-selected="false">My Informations</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" id="comment-tab" data-toggle="tab" href="#comment" role="tab"
+                               aria-controls="comment"
+                               aria-selected="false">My Comments</a>
+                        </li>
+                    </ul>
+                    {% include 'User/_user-info.html.twig' %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'User/_mapbox-script.html.twig' %}
+
+    </div>
+
+    {% include 'User/_weather-script.html.twig' %}
+{% endblock %}

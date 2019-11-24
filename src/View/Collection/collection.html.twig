@@ -1,0 +1,17 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    {% include 'Collection/_collection-main-banner.html.twig' %}
+    {% include 'Collection/_submenu-collection.html.twig' %}
+    <div class="container collection-pictures">
+        <div class="row mx-auto">
+            {% for subcollection in subcollections  %}
+                    <div class="col-4 collection-title">
+                        <a href="/Subcollection/show/{{ subcollection.id }}"><img
+                                    class="collection-illustration"
+                                    src="/assets/images/Collections/Collections/collection-{{ subcollection.id }}.png"/></a>
+                    </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

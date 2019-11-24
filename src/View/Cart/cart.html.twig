@@ -1,0 +1,58 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <div id="cartContent">
+        <div id="cartTitle">
+            <h1>Shipping cart</h1>
+            <a class="btn btn-dark" href="/Home/index" role="button">Continue shopping</a>
+        </div>
+        <tr>
+            <td>{{ message }}</td>
+        </tr>
+        {% set priceTot = 0 %}
+        {% if cartDisplay is not empty %}
+            {% for article in cartDisplay %}
+                <div class="cartArticles">
+                    <div class="imgArticle">
+                        <img src="{{ article["image"] }}">
+                    </div>
+                    <div class="articleDescription">
+                        <h2>{{ article["name"] }}</h2>
+                        <p class="article-mobile-description">{{ article["description"] }}</p>
+                    </div>
+                    <div class="quantityArticle">
+                        <p>{{ article["price"] }}$ x</p>
+                        <form class="quantityCart" method="post" action="/Cart/index">
+                            {% for data in cartData %}
+                                {% if article.reference_id == data.reference_id %}
+                                    <input type="number" step="1" max="10" min="1" value="{{ data.quantity }}"
+                                           class="form-control" name="{{ article.reference_id }}">
+                                    <input type="hidden" name="price"
+                                           value="{{ data.quantity * article["price"] }}">
+                                    {% set priceTot = priceTot + (data.quantity * article["price"]) %}
+                                    <input type="hidden" name="priceTot" value="{{ priceTot }}">
+                                    <input type="hidden" name="referenceCart" value="{{ data.reference_id }}">
+                                {% endif %}
+                            {% endfor %}
+                            <a class="btn btn-outline-danger btn-xs" href="/Cart/delete/{{ article.reference_id }}"
+                               role="button">
+                                <i class="fa fa-lg fa-trash-o" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+        <div class="cartFooter">
+            <div class="updateCart">
+                <button type="submit" name="update" class="btn btn-secondary">Update shopping cart</button>
+            </div>
+            <div class="totalPrice">
+                Total price : {{ priceTot }}$
+            </div>
+            <div>
+                <a class="btn btn-success" href="/Checkout/index" role="button">Checkout</a>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

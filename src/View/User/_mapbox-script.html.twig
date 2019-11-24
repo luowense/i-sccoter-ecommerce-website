@@ -1,0 +1,43 @@
+
+
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoibHVvd2VuIiwiYSI6ImNrMnE1ZTJnazA4NWQzZW1vZXljYWg1NmwifQ.MkqZuE6WAw6bHKDg43JCFw';
+    let center =  [{{ sendToMapBox[1] }}, {{ sendToMapBox[0] }} ]; // starting position [lng, lat]
+
+    var map = new mapboxgl.Map({
+        container: 'map', // container id
+        style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
+        center: center, // starting position [lng, lat]
+        zoom: 10 // starting zoom
+    });
+
+    console.log(center);
+    document.getElementById('address').addEventListener('keydown', function () {
+        let api = 'https://api-adresse.data.gouv.fr/search/?q=';
+        let city = document.getElementById('address').value;
+        let autocomplete = '?type=housenumber&autocomplete=1';
+        let url = api + city + autocomplete;
+        console.log(url);
+        fetch(url)
+            .then(response => response.json())
+            .then(function (data) {
+                console.log(data);
+
+                function getAddress() {
+                    let dropdown = document.querySelector('.dropdown');
+                    let placeholder = dropdown.getAttribute('value')
+                    let a = Object(data.features);
+                    console.log(a);
+                    for (let direction of a) {
+                        direction = Object(direction);
+                        let final = direction.properties.label;
+                        console.log(direction.properties.label);
+                        return placeholder.textContent = `${final}`;
+                    }
+                }
+                getAddress();
+
+
+            })
+    });
+</script>

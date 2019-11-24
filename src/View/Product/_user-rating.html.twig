@@ -1,0 +1,75 @@
+<div class="container" id="user-rating">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-2">
+                    <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid"/>
+                </div>
+                <div class="col-md-10">
+                    <p>
+                        <a class="float-left"
+                           href="https://maniruzzaman-akash.blogspot.com/p/contact.html"><strong></strong></a>
+                    </p>
+                    <div class="clearfix"></div>
+                    <form method="POST">
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Your comment</label>
+                            <textarea name="comment" class="form-control" id="exampleFormControlTextarea1"
+                                      rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                    <p>
+                        <a class="float-right btn btn-outline-primary ml-2"> <i class="fa fa-reply"></i> Reply</a>
+                        <a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> Like</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if comment is not empty %}
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-2">
+                        <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid"/>
+                    </div>
+                    <div class="col-md-10">
+                        <p>
+                            <a class="float-left"
+                               href="/user/index/#comment"><strong>{{ firstname }}</strong></a>
+                        </p>
+                        <div class="clearfix"></div>
+                        <p>{{ comment }}</p>
+                        <p>
+                            <a class="float-right btn btn-outline-primary ml-2"> <i class="fa fa-reply"></i> Reply</a>
+                            <a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> Like</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-2">
+                    <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid"/>
+                    <p class="text-secondary text-center">15 Minutes Ago</p>
+                </div>
+                <div class="col-md-10">
+                    <p>
+                        <a class="float-left" href="#"><strong>John Phillips</strong></a>
+                    </p>
+                    <div class="clearfix"></div>
+                    <p>This is a great website, I really love it, Iscooter changed my life</p>
+                    <p>
+                        <a class="float-right btn btn-outline-primary ml-2"> <i class="fa fa-reply"></i> Reply</a>
+                        <a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> Like</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
